@@ -12,7 +12,6 @@ public abstract class Account implements Syncable{
     private final String currency;
     private final String accountType;
     private double balance;
-    private static final Scanner scanner = new Scanner(System.in);
     protected final LocalDateTime time = LocalDateTime.now();
 
     public Account(String institutionName, String currency, String accountType) {

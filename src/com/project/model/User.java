@@ -17,13 +17,7 @@ public double kaan;
     private final double incomeAmount;
     private final Banks bank;
     private double totalBalance;
-    private final List<Account> accounts = new ArrayList<>();
-
-    private final List<Budget> budgets = new ArrayList<>();
-    private final List<Goal> goals = new ArrayList<>();
-    private final List<Challenge> activeChallenges = new ArrayList<>();
-    private int xp = 0;
-    private String currentTier = "Rookie";
+    List<Account> accounts = new ArrayList<>();
 
     public User(String username, double incomeAmount, double recurringExpense, double outstandingDebt, Banks bank) {
         this.username = username;
@@ -61,50 +55,6 @@ public double kaan;
         for(Account account : accounts) {
             System.out.println(account.getBalance());
             totalBalance += account.getBalance();
-        }
-    }
-
-    public List<Account> getAccounts() {
-        return accounts;
-    }
-
-    public List<Budget> getBudgets() {
-        return budgets;
-    }
-   public List<Goal> getGoals() {
-        return goals;
-   }
-    public List<Challenge> getActiveChallenges() {
-        return activeChallenges;
- }
- public int getXp() {
-        return xp;
- }
-    public String getCurrentTier() {
-        return currentTier;
-    }
-    public void addBudget(Budget budget) {
-        this.budgets.add(budget);
-    }
-    public void addGoal(Goal goal) {
-        this.goals.add(goal);
-    }
-    public void addChallenge(Challenge challenge) {
-        this.activeChallenges.add(challenge);
-    }
-    public void addXp(int amount) {
-        this.xp += amount;
-        System.out.println("✨ You earned " + amount + " XP! Total XP: " + this.xp);
-
-        // Tier progression based on milestone points
-        if (this.xp >= 400) {
-            currentTier = "Financial Guru";
-        } else if (this.xp >= 300) {
-            currentTier = "Wealth Builder";
-        } else if (this.xp >= 200) {
-            currentTier = "Investor";
-        } else if (this.xp >= 100) {
-            currentTier = "Saver";
         }
     }
 

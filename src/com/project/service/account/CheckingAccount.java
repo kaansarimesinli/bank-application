@@ -2,6 +2,7 @@ package com.project.service.account;
 
 import com.project.model.Account;
 import com.project.service.api.Accounts;
+import com.project.service.exceptions.InsufficientFundsException;
 
 import java.time.LocalDateTime;
 
@@ -32,9 +33,11 @@ public class CheckingAccount extends Account{
         return null;
     }
 
-    public void checkBalance() {
-        if(getBalance() < overdraftLimit) {
-
+    @Override
+    public void debit(double amount) {
+        if((balance - amount) < overdraftLimit) {
+            throw new InsufficientFundsException("Insufficient Funds!");
         }
+        balance -= amount;
     }
 }
