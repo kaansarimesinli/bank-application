@@ -1,0 +1,7 @@
+package com.project.service.exceptions;
+
+public class OverdraftExceededException extends RuntimeException {
+    public OverdraftExceededException(String message) {
+        super(message);
+    }
+}
