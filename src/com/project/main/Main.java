@@ -129,7 +129,7 @@ public class Main {
                         switch (op) {
                             case 1: // INCOME PROCESSING
                                 System.out.println("\n--- PROCESS INCOME ---");
-                                for (int i = 0; i < newUser.getAccounts().size(); i++) {
+                                for (int i = 0; i < newUser.getAccounts().size() - 1; i++) {
                                     System.out.printf("%d. %s%n", i + 1, newUser.getAccounts().get(i).getAccountType());
                                 }
                                 int incAccIdx = secureSelection("Select target account: ", 1, newUser.getAccounts().size()) - 1;
@@ -144,7 +144,7 @@ public class Main {
 
                             case 2: // EXPENSE WITH PROTECTION HOOKS
                                 System.out.println("\n--- PROCESS EXPENSE ---");
-                                for (int i = 0; i < newUser.getAccounts().size(); i++) {
+                                for (int i = 0; i < newUser.getAccounts().size() - 1; i++) {
                                     System.out.printf("%d. %s%n", i + 1, newUser.getAccounts().get(i).getAccountType());
                                 }
                                 int expAccIdx = secureSelection("Select funding source account: ", 1, newUser.getAccounts().size()) - 1;
@@ -225,7 +225,7 @@ public class Main {
                                 break;
 
                             case 5: // LOAN BALANCING INTERFACE
-                                System.out.println("\n--- PAY LOAN INSTALLMENT ---");
+                                System.out.println("\n--- PAY OR ADD LOAN---");
                                 LoanAccount targetLoan = null;
                                 for (Account acc : newUser.getAccounts()) {
                                     if (acc instanceof LoanAccount) {
