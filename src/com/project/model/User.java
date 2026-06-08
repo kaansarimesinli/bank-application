@@ -51,7 +51,7 @@ public class User {
         }
     }
 
-    public void getBalances() {
+    public void totalBalanceCalculate() {
         for(Account account : accounts) {
             System.out.println(account.getBalance());
             totalBalance += account.getBalance();

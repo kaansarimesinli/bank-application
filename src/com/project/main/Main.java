@@ -56,23 +56,23 @@ public class Main {
             System.out.printf("%d. %s%n", i + 1, banks[i].getName());
         }
         System.out.println();
-        int selection;
+        int bankSelection;
         while(true) {
                 try {
                     System.out.print("Please select a bank: ");
                     int temporarySelection = Integer.parseInt(input.nextLine());
 
-                    if(temporarySelection < 0 || temporarySelection > 3) {
+                    if(temporarySelection < 1 || temporarySelection > 4) {
                         throw new IllegalArgumentException();
                     }
-                    selection = temporarySelection;
+                    bankSelection = temporarySelection;
                     break;
 
                 }catch (IllegalArgumentException e) {
                     System.out.println("Invalid input!");
                 }
         }
-        Banks selectedBank = banks[selection];
+        Banks selectedBank = banks[bankSelection - 1];
 
         User newUser = new User(username, incomeAmount, recurringExpense, outstandingDebt, selectedBank);
         System.out.print("Your accounts are being imported");
@@ -87,6 +87,35 @@ public class Main {
         }catch (InterruptedException e) {
             System.out.println("\n\nThe process was interrupted!");
         }
+
+        System.out.println("=======================================");
+        System.out.println("             ACCOUNT PANEL");
+        System.out.println("=======================================");
+        System.out.println("1. Central Financial Management & Banking");
+        System.out.println("2. Financial Academy & Gamification Hub");
+        System.out.println("3. Exit System\n");
+        int panelSelection;
+        while(true) {
+            try {
+                System.out.print("Please select: ");
+                int temporarySelection = Integer.parseInt(input.nextLine());
+
+                if(temporarySelection < 1 || temporarySelection > 3) {
+                    throw new IllegalArgumentException();
+                }
+                panelSelection = temporarySelection;
+                break;
+
+            }catch (IllegalArgumentException e) {
+                System.out.println("Invalid input!");
+            }
+        }
+
+        if(panelSelection == 3) {
+            System.out.println("The application has been closed!");
+            System.exit(0);
+        }
+
 
     }
 
