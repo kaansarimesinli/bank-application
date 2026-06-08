@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-
+public double kaan;
     private final String username;
     private final double recurringExpense;
     private final double outstandingDebt;
