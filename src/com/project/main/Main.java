@@ -1,6 +1,8 @@
 package com.project.main;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+
 import com.project.model.User;
 import com.project.service.api.Banks;
 
@@ -29,31 +31,41 @@ public class Main {
             System.out.printf("%d. %s%n", i + 1, banks[i].getName());
         }
         System.out.println();
+        input.nextLine();
         int selection;
         while(true) {
-            System.out.print("Please select a bank: ");
-            try {
-                if(input.hasNextInt()) {
-                    throw new IllegalArgumentException("Please enter a valid value!");
-                }
-            }catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                continue;
-            }
-            selection = input.nextInt() - 1;
                 try {
-                    if(selection < 0 || selection > 3) {
-                        throw new IllegalArgumentException("Please enter a valid value!");
+                    System.out.print("Please select a bank: ");
+                    int temporarySelection = Integer.parseInt(input.nextLine());
+
+                    if(temporarySelection < 0 || temporarySelection > 3) {
+                        throw new IllegalArgumentException();
                     }
+                    selection = temporarySelection;
+                    break;
+
                 }catch (IllegalArgumentException e) {
-                    System.out.println(e.getMessage());
-                    continue;
+                    System.out.println("Invalid input!");
                 }
-                break;
         }
         Banks selectedBank = banks[selection];
 
         User newUser = new User(username, incomeAmount, recurringExpense, outstandingDebt, selectedBank);
+        System.out.println("\nBank synchronization completed successfully!");
+        System.out.print("Your accounts are being imported");
+        try {
+            for(int i = 1; i <= 3; i++) {
+                TimeUnit.SECONDS.sleep(1);
+                System.out.print(".");
+            }
+            TimeUnit.MILLISECONDS.sleep(20);
+            System.out.println("\n");
+            newUser.syncAccounts();
+        }catch (InterruptedException e) {
+            System.out.println("\nThe process was interrupted!");
+        }
+
+        newUser.getBalances();
 
     }
 

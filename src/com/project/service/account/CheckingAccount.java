@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 public class CheckingAccount extends Account{
 
     private static final double overdraftLimit = -5000;
+    private double balance;
 
     public CheckingAccount(String institutionName) {
         super(institutionName, Accounts.CheckingAccount.getCurrency(), Accounts.CheckingAccount.getName());
@@ -15,12 +16,12 @@ public class CheckingAccount extends Account{
 
     @Override
     public double getBalance() {
-        return getInternalBalance();
+        return balance;
     }
 
     @Override
     protected void syncWithProvider() {
-        setInternalBalance(Accounts.CheckingAccount.getBalance());
+        balance = Accounts.CheckingAccount.getBalance();
     }
 
     @Override

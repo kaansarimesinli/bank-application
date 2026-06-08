@@ -16,6 +16,7 @@ public class User {
     private final double outstandingDebt;
     private final double incomeAmount;
     private final Banks bank;
+    private double totalBalance;
     List<Account> accounts = new ArrayList<>();
 
     public User(String username, double incomeAmount, double recurringExpense, double outstandingDebt, Banks bank) {
@@ -38,6 +39,23 @@ public class User {
         double cashFlowScore = ((incomeAmount - recurringExpense - outstandingDebt) / incomeAmount * 100);
         double debtBurdenPremium = (1 - (outstandingDebt / incomeAmount)) * 50;
         return cashFlowScore + debtBurdenPremium;
+    }
+
+    public Banks getBank() {
+        return bank;
+    }
+
+    public void syncAccounts() {
+        for (Account account : accounts) {
+            account.syncWithProvider();
+        }
+    }
+
+    public void getBalances() {
+        for(Account account : accounts) {
+            System.out.println(account.getBalance());
+            totalBalance += account.getBalance();
+        }
     }
 
 }

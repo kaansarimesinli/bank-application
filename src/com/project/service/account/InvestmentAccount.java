@@ -7,18 +7,20 @@ import java.time.LocalDateTime;
 
 public class InvestmentAccount extends Account{
 
+    private double shareValue;
+
     public InvestmentAccount(String institutionName) {
         super(institutionName, Accounts.InvestmentAccount.getCurrency(), Accounts.InvestmentAccount.getName());
     }
 
     @Override
     public double getBalance() {
-        return getInternalBalance();
+        return shareValue;
     }
 
     @Override
     protected void syncWithProvider() {
-        setInternalBalance(Accounts.InvestmentAccount.getBalance());
+        shareValue = Accounts.InvestmentAccount.getBalance();
     }
 
     @Override

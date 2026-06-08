@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 public class SavingsAccount extends Account{
 
     private static final double interestRate = 0.05;
+    private double balance;
 
     public SavingsAccount(String institutionName) {
         super(institutionName, Accounts.SavingsAccount.getCurrency(), Accounts.SavingsAccount.getName());
@@ -15,7 +16,7 @@ public class SavingsAccount extends Account{
 
     @Override
     public double getBalance() {
-        return getInternalBalance();
+        return balance;
     }
 
     @Override
@@ -31,7 +32,7 @@ public class SavingsAccount extends Account{
         return interestRate;
     }
 
-    public void futureValue(int month) {
-        setInternalBalance(getBalance() + (interestRate * month * getBalance()));
+    public double futureValue(int month) {
+        return getBalance() + (interestRate * month * getBalance());
     }
 }

@@ -34,14 +34,6 @@ public abstract class Account implements Syncable{
         return accountType;
     }
 
-    protected double getInternalBalance() {
-        return balance;
-    }
-
-    protected void setInternalBalance(double amount) {
-        balance += amount;
-    }
-
     public void credit(double amount) {
         if(amount < 0) {
             throw new NegativeNumberException("The entered value cannot be negative!");

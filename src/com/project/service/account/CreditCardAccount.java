@@ -7,18 +7,20 @@ import java.time.LocalDateTime;
 
 public class CreditCardAccount extends Account {
 
+    private double limit;
+
     public CreditCardAccount(String institutionName) {
         super(institutionName, Accounts.CreditCardAccount.getCurrency(), Accounts.CreditCardAccount.getName());
     }
 
     @Override
     public double getBalance() {
-        return getInternalBalance();
+        return limit;
     }
 
     @Override
     protected void syncWithProvider() {
-        setInternalBalance(Accounts.CreditCardAccount.getBalance());
+        limit = Accounts.CreditCardAccount.getBalance();
     }
 
     @Override
