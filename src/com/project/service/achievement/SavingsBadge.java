@@ -9,6 +9,6 @@ public class SavingsBadge extends Achievement {
 
     @Override
     public void displayBadge() {
-        System.out.println("💰 [SAVINGS BADGE] " + getBadgeName() + ": " + getDescription() + " (Unlocked at: " + getUnlockedAt() + ")");
+        System.out.println("[SAVINGS BADGE] " + getBadgeName() + ": " + getDescription() + " (Unlocked at: " + getUnlockedAt() + ")");
     }
 }

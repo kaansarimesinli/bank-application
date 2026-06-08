@@ -8,7 +8,7 @@ public class InvestmentSeedGoal extends Goal {
     }
     @Override
     public void checkGoalStatus() {
-        System.out.println("🌱 Investment Seed [" + getGoalName() + "] Progress: "
+        System.out.println("Investment Seed [" + getGoalName() + "] Progress: "
                 + String.format("%.2f", getProgressPercentage()) + "% ("
                 + getCurrentAmount() + " / " + getTargetAmount() + " USD)");
 

@@ -9,6 +9,6 @@ public class StreakBadge extends Achievement {
 
     @Override
     public void displayBadge() {
-        System.out.println("🔥 [STREAK BADGE] " + getBadgeName() + ": " + getDescription() + " (Unlocked at: " + getUnlockedAt() + ")");
+        System.out.println("[STREAK BADGE] " + getBadgeName() + ": " + getDescription() + " (Unlocked at: " + getUnlockedAt() + ")");
     }
 }

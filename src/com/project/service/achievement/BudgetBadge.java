@@ -9,6 +9,6 @@ public class BudgetBadge extends Achievement {
 
     @Override
     public void displayBadge() {
-        System.out.println("🛡️ [BUDGET BADGE] " + getBadgeName() + ": " + getDescription() + " (Unlocked at: " + getUnlockedAt() + ")");
+        System.out.println("[BUDGET BADGE] " + getBadgeName() + ": " + getDescription() + " (Unlocked at: " + getUnlockedAt() + ")");
     }
 }

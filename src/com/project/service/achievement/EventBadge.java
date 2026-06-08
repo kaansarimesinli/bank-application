@@ -9,6 +9,6 @@ public class EventBadge extends Achievement {
 
     @Override
     public void displayBadge() {
-        System.out.println("🏆 [EVENT BADGE] " + getBadgeName() + ": " + getDescription() + " (Unlocked at: " + getUnlockedAt() + ")");
+        System.out.println("[EVENT BADGE] " + getBadgeName() + ": " + getDescription() + " (Unlocked at: " + getUnlockedAt() + ")");
     }
 }

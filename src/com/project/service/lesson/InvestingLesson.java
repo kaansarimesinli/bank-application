@@ -13,6 +13,6 @@ public class InvestingLesson extends Lesson {
         System.out.println("Title: " + getLessonTitle());
         System.out.println("Content: Understand compound interest, diversification, and investment asset types like stocks and bonds.");
         completeLesson();
-        System.out.println("Status: Lesson marked as COMPLETED! ✅");
+        System.out.println("Status: Lesson marked as COMPLETED!");
     }
 }

@@ -9,6 +9,6 @@ public class LearningBadge extends Achievement {
 
     @Override
     public void displayBadge() {
-        System.out.println("📚 [LEARNING BADGE] " + getBadgeName() + ": " + getDescription() + " (Unlocked at: " + getUnlockedAt() + ")");
+        System.out.println("[LEARNING BADGE] " + getBadgeName() + ": " + getDescription() + " (Unlocked at: " + getUnlockedAt() + ")");
     }
 }

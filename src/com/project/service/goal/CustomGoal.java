@@ -19,7 +19,7 @@ public class CustomGoal extends Goal {
         System.out.println("Notes: " + goalNotes);
 
         if (getCurrentAmount() >= getTargetAmount()) {
-            System.out.println("🎉 Success! You have achieved your custom goal: " + getGoalName() + "!");
+            System.out.println("Success! You have achieved your custom goal: " + getGoalName() + "!");
         }
     }
 }

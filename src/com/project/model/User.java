@@ -109,7 +109,7 @@ public class User {
 
     public void addXp(int amount) {
         this.xp += amount;
-        System.out.println("✨ You earned " + amount + " XP! Total XP: " + this.xp);
+        System.out.println("You earned " + amount + " XP! Total XP: " + this.xp);
 
         if (this.xp >= 400) {
             currentTier = "Financial Guru";
@@ -128,7 +128,7 @@ public class User {
 
     public void unlockBadge(Achievement badge) {
         this.unlockedBadges.add(badge);
-        System.out.println("\n✨ [NEW ACHIEVEMENT UNLOCKED!] ✨");
+        System.out.println("\n[NEW ACHIEVEMENT UNLOCKED!]");
         badge.displayBadge();
     }
 
@@ -185,14 +185,14 @@ public class User {
     public void executeCreditTransaction(CreditTransaction transaction, Account account) {
         // Add the income amount to the selected account
         account.credit(transaction.getAmount());
-        System.out.println("💰 Income successfully applied: " + transaction.getAmount() + " USD");
+        System.out.println("Income successfully applied: " + transaction.getAmount() + " USD");
     }
 
     public void executeTransferTransaction(TransferTransaction transaction, Account sourceAccount, Account destinationAccount) {
         // Deduct from the source and credit to the destination account
         sourceAccount.debit(transaction.getAmount());
         destinationAccount.credit(transaction.getAmount());
-        System.out.println("🔄 Transfer Successful: " + transaction.getAmount() + " USD processed.");
+        System.out.println("Transfer Successful: " + transaction.getAmount() + " USD processed.");
     }
 
     public void allocateSavingsToGoal(Goal goal, Account account, double amount) {
@@ -201,7 +201,7 @@ public class User {
 
         // 2. Add the amount to the target financial goal
         goal.addSavings(amount);
-        System.out.println("🎯 Successfully allocated " + amount + " USD to your goal.");
+        System.out.println("Successfully allocated " + amount + " USD to your goal.");
 
         // 3. Check if the goal is fully achieved
         if (goal.getProgressPercentage() >= 100) {
