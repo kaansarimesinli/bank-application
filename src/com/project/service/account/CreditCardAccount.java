@@ -2,30 +2,28 @@ package com.project.service.account;
 
 import com.project.model.Account;
 import com.project.service.api.Accounts;
-
 import java.time.LocalDateTime;
 
 public class CreditCardAccount extends Account {
 
-    private double limit;
-
     public CreditCardAccount(String institutionName) {
         super(institutionName, Accounts.CreditCardAccount.getCurrency(), Accounts.CreditCardAccount.getName());
+        this.balance = Accounts.CreditCardAccount.getBalance(); // Limit or balance mapped to protected balance
     }
 
     @Override
     public double getBalance() {
-        return limit;
+        return this.balance;
     }
 
     @Override
     protected void syncWithProvider() {
-        limit = Accounts.CreditCardAccount.getBalance();
+        this.balance = Accounts.CreditCardAccount.getBalance();
     }
 
     @Override
     public LocalDateTime getLastSyncTime() {
-        if(getBalance() == Accounts.CreditCardAccount.getBalance()) {
+        if (getBalance() == Accounts.CreditCardAccount.getBalance()) {
             return time;
         }
         return null;

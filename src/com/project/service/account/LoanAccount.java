@@ -2,11 +2,9 @@ package com.project.service.account;
 
 import com.project.model.Account;
 import com.project.service.api.Accounts;
-
 import java.time.LocalDateTime;
 
 public class LoanAccount extends Account {
-    private double remainingLoanAmount;
     private final int totalInstallments;
     private int remainingInstallments;
 
@@ -14,17 +12,19 @@ public class LoanAccount extends Account {
         super(institutionName, Accounts.LoanAccount.getCurrency(), Accounts.LoanAccount.getName());
         this.totalInstallments = totalInstallments;
         this.remainingInstallments = totalInstallments;
+        this.balance = Accounts.LoanAccount.getBalance(); // Negative liability balance
     }
 
     public int getTotalInstallments() {
         return totalInstallments;
     }
+
     public int getRemainingInstallments() {
         return remainingInstallments;
     }
 
     public void payInstallment(double paymentAmount) {
-        this.remainingLoanAmount += paymentAmount;
+        this.balance += paymentAmount; // Reduces the negative loan amount
         if (this.remainingInstallments > 0) {
             this.remainingInstallments--;
         }
@@ -32,12 +32,12 @@ public class LoanAccount extends Account {
 
     @Override
     public double getBalance() {
-        return remainingLoanAmount;
+        return this.balance;
     }
 
     @Override
     protected void syncWithProvider() {
-        this.remainingLoanAmount = Accounts.LoanAccount.getBalance();
+        this.balance = Accounts.LoanAccount.getBalance();
     }
 
     @Override

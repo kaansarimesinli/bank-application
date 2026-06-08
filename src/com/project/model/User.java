@@ -2,6 +2,8 @@ package com.project.model;
 
 import com.project.service.account.*;
 import com.project.service.api.Banks;
+import com.project.service.transaction.*;
+import com.project.service.notification.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +16,7 @@ public class User {
     private final double incomeAmount;
     private final Banks bank;
     private double totalBalance;
-    List<Account> accounts = new ArrayList<>();
-
+    private final List<Account> accounts = new ArrayList<>();
     private final List<Budget> budgets = new ArrayList<>();
     private final List<Goal> goals = new ArrayList<>();
     private final List<Challenge> activeChallenges = new ArrayList<>();
@@ -25,18 +26,21 @@ public class User {
     private final List<Notification> notifications = new ArrayList<>();
     private final List<Report> reports = new ArrayList<>();
     private final List<Lesson> completedLessons = new ArrayList<>();
+
     public User(String username, double incomeAmount, double recurringExpense, double outstandingDebt, Banks bank) {
         this.username = username;
         this.incomeAmount = incomeAmount;
         this.recurringExpense = recurringExpense;
         this.outstandingDebt = outstandingDebt;
         this.bank = bank;
-        accounts.add(new CheckingAccount(bank.getName()));
-        accounts.add(new CreditCardAccount(bank.getName()));
-        accounts.add(new SavingsAccount(bank.getName()));
-        accounts.add(new InvestmentAccount(bank.getName()));
-        accounts.add(new CryptoWallet("Metamask", "0x71C..."));
-        accounts.add(new LoanAccount(bank.getName(), 12));
+
+        // Initializing accounts
+        this.accounts.add(new CheckingAccount(bank.getName()));
+        this.accounts.add(new CreditCardAccount(bank.getName()));
+        this.accounts.add(new SavingsAccount(bank.getName()));
+        this.accounts.add(new InvestmentAccount(bank.getName()));
+        this.accounts.add(new CryptoWallet("Metamask", "0x71C..."));
+        this.accounts.add(new LoanAccount(bank.getName(), 12));
     }
 
     public String getUsername() {
@@ -60,12 +64,13 @@ public class User {
     }
 
     public void getBalances() {
-        totalBalance = 0;
-        for(Account account : accounts) {
+        this.totalBalance = 0; // Reset total on each calculation to prevent accumulation bug
+        for (Account account : accounts) {
             System.out.println(account.getBalance());
-            totalBalance += account.getBalance();
+            this.totalBalance += account.getBalance();
         }
     }
+
     public List<Account> getAccounts() {
         return accounts;
     }
@@ -133,7 +138,7 @@ public class User {
 
     public void addNotification(Notification notification) {
         this.notifications.add(notification);
-        notification.sendNotification(); // Bildirim eklendiği an polimorfik olarak konsola uyarı basar
+        notification.sendNotification();
     }
 
     public List<Report> getReports() {
@@ -142,14 +147,81 @@ public class User {
 
     public void addAndGenerateReport(Report report) {
         this.reports.add(report);
-        report.generateReport(this); // Rapor listeye eklendiği an polimorfik olarak içerik analizini konsola basar
+        report.generateReport(this);
     }
+
     public List<Lesson> getCompletedLessons() {
         return completedLessons;
     }
 
     public void addAndStudyLesson(Lesson lesson) {
         this.completedLessons.add(lesson);
-        lesson.studyLesson(); // Ders listeye eklendiği an polimorfik olarak içeriği konsola basar ve tamamlar
+        lesson.studyLesson();
+        this.evaluateActiveChallenges();
+    }
+
+    // ==========================================
+    // CORE LOGIC INTEGRATION METHODS (SAFE ZONE)
+    // ==========================================
+
+    public void executeDebitTransaction(DebitTransaction transaction, Account account) {
+        // 1. Deduct the amount from the selected account
+        account.debit(transaction.getAmount());
+
+        // 2. Find the matching category budget and update it
+        for (Budget budget : budgets) {
+            if (budget.getCategoryName().equalsIgnoreCase(transaction.getCategory())) {
+                budget.updateBudget(transaction);
+
+                // 3. Trigger notification if the budget is exceeded
+                if (budget.getAmountRemaining() < 0) {
+                    String alertMessage = transaction.getCategory() + " budget exceeded! Overspend amount: " + Math.abs(budget.getAmountRemaining()) + " USD";
+                    this.addNotification(new BudgetAlert(alertMessage));
+                }
+            }
+        }
+    }
+
+    public void executeCreditTransaction(CreditTransaction transaction, Account account) {
+        // Add the income amount to the selected account
+        account.credit(transaction.getAmount());
+        System.out.println("💰 Income successfully applied: " + transaction.getAmount() + " USD");
+    }
+
+    public void executeTransferTransaction(TransferTransaction transaction, Account sourceAccount, Account destinationAccount) {
+        // Deduct from the source and credit to the destination account
+        sourceAccount.debit(transaction.getAmount());
+        destinationAccount.credit(transaction.getAmount());
+        System.out.println("🔄 Transfer Successful: " + transaction.getAmount() + " USD processed.");
+    }
+
+    public void allocateSavingsToGoal(Goal goal, Account account, double amount) {
+        // 1. Deduct the amount from the selected account
+        account.debit(amount);
+
+        // 2. Add the amount to the target financial goal
+        goal.addSavings(amount);
+        System.out.println("🎯 Successfully allocated " + amount + " USD to your goal.");
+
+        // 3. Check if the goal is fully achieved
+        if (goal.getProgressPercentage() >= 100) {
+            String milestoneMessage = "Congratulations! You have achieved 100% of a financial goal.";
+            this.addNotification(new GoalMilestoneAlert(milestoneMessage));
+        }
+    }
+
+    public void evaluateActiveChallenges() {
+        // Iterate through all active challenges to check their status
+        for (Challenge challenge : activeChallenges) {
+            // If the challenge conditions are met
+            if (challenge.evaluateChallenge(this)) {
+                // Reward the user with the challenge's XP
+                this.addXp(challenge.getXpReward());
+
+                // Generate a system notification for the completed challenge
+                String challengeMessage = "A financial challenge has been completed! Earned " + challenge.getXpReward() + " XP.";
+                this.addNotification(new GoalMilestoneAlert(challengeMessage));
+            }
+        }
     }
 }

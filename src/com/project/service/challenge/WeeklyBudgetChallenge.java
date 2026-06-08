@@ -19,6 +19,7 @@ public class WeeklyBudgetChallenge extends Challenge {
         for (Budget budget : user.getBudgets()){
             if (budget.getCategoryName().equalsIgnoreCase(targetCategory)){
                 if(budget.getAmountSpent() <= budget.getMonthlyLimit()){
+                    setCompleted(true);
                     return true;
                 }
             }
