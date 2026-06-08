@@ -1,16 +1,13 @@
 package com.project.model;
 
-import com.project.service.account.CheckingAccount;
-import com.project.service.account.CreditCardAccount;
-import com.project.service.account.InvestmentAccount;
-import com.project.service.account.SavingsAccount;
+import com.project.service.account.*;
 import com.project.service.api.Banks;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-public double kaan;
+
     private final String username;
     private final double recurringExpense;
     private final double outstandingDebt;
@@ -24,6 +21,10 @@ public double kaan;
     private final List<Challenge> activeChallenges = new ArrayList<>();
     private int xp = 0;
     private String currentTier = "Rookie";
+    private final List<Achievement> unlockedBadges = new ArrayList<>();
+    private final List<Notification> notifications = new ArrayList<>();
+    private final List<Report> reports = new ArrayList<>();
+    private final List<Lesson> completedLessons = new ArrayList<>();
     public User(String username, double incomeAmount, double recurringExpense, double outstandingDebt, Banks bank) {
         this.username = username;
         this.incomeAmount = incomeAmount;
@@ -34,6 +35,8 @@ public double kaan;
         accounts.add(new CreditCardAccount(bank.getName()));
         accounts.add(new SavingsAccount(bank.getName()));
         accounts.add(new InvestmentAccount(bank.getName()));
+        accounts.add(new CryptoWallet("Metamask", "0x71C..."));
+        accounts.add(new LoanAccount(bank.getName(), 12));
     }
 
     public String getUsername() {
@@ -57,6 +60,7 @@ public double kaan;
     }
 
     public void getBalances() {
+        totalBalance = 0;
         for(Account account : accounts) {
             System.out.println(account.getBalance());
             totalBalance += account.getBalance();
@@ -111,5 +115,41 @@ public double kaan;
         } else if (this.xp >= 100) {
             currentTier = "Saver";
         }
+    }
+
+    public List<Achievement> getUnlockedBadges() {
+        return unlockedBadges;
+    }
+
+    public void unlockBadge(Achievement badge) {
+        this.unlockedBadges.add(badge);
+        System.out.println("\n✨ [NEW ACHIEVEMENT UNLOCKED!] ✨");
+        badge.displayBadge();
+    }
+
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void addNotification(Notification notification) {
+        this.notifications.add(notification);
+        notification.sendNotification(); // Bildirim eklendiği an polimorfik olarak konsola uyarı basar
+    }
+
+    public List<Report> getReports() {
+        return reports;
+    }
+
+    public void addAndGenerateReport(Report report) {
+        this.reports.add(report);
+        report.generateReport(this); // Rapor listeye eklendiği an polimorfik olarak içerik analizini konsola basar
+    }
+    public List<Lesson> getCompletedLessons() {
+        return completedLessons;
+    }
+
+    public void addAndStudyLesson(Lesson lesson) {
+        this.completedLessons.add(lesson);
+        lesson.studyLesson(); // Ders listeye eklendiği an polimorfik olarak içeriği konsola basar ve tamamlar
     }
 }

@@ -11,7 +11,7 @@ public abstract class Account implements Syncable{
     private final String institutionName;
     private final String currency;
     private final String accountType;
-    private double balance;
+    protected double balance;
     protected final LocalDateTime time = LocalDateTime.now();
 
     public Account(String institutionName, String currency, String accountType) {
