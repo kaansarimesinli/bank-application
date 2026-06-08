@@ -58,4 +58,8 @@ public class User {
         }
     }
 
+    public double getTotalBalance() {
+        return totalBalance;
+    }
+
 }
