@@ -238,7 +238,7 @@ public class Main {
                                     double payAmount = secureBalance("Enter payment amount to reduce loan: ");
 
                                     targetLoan.payInstallment(payAmount);
-                                    System.out.println("🎉 Installment processed! New Loan Debt: " + targetLoan.getBalance() + " USD");
+                                    System.out.println("Installment processed! New Loan Debt: " + targetLoan.getBalance() + " USD");
                                 }
                                 break;
 
@@ -256,7 +256,7 @@ public class Main {
                                     int months = secureSelection("Enter timeline (Months): ", 1, 120);
 
                                     double projectedValue = savingsAcc.futureValue(months);
-                                    System.out.printf("🔮 Future compound simulation result: %.2f USD%n", projectedValue);
+                                    System.out.printf("Future compound simulation result: %.2f USD%n", projectedValue);
                                 }
                                 break;
 
@@ -265,7 +265,7 @@ public class Main {
                                 System.out.println("Scanning pending system infrastructure invoices...");
                                 newUser.addNotification(new BillReminder("Upcoming Rent Invoice: 600.00 USD due in 5 days."));
                                 newUser.addNotification(new BillReminder("Streaming Subscription Bill: 14.99 USD due tomorrow."));
-                                System.out.println("✅ Scanner active. Invoices added to notifications log framework.");
+                                System.out.println("Scanner active. Invoices added to notifications log framework.");
                                 break;
 
                             case 8: // ANALYTICS & STATEMENTS
@@ -401,9 +401,9 @@ public class Main {
                     }
                 }
             } catch (InsufficientFundsException | OverdraftExceededException | NegativeNumberException e) {
-                System.out.println("\n❌ [TRANSACTION BLOCKED]: " + e.getMessage());
+                System.out.println("\n[TRANSACTION BLOCKED]: " + e.getMessage());
             } catch (Exception e) {
-                System.out.println("\n❌ [SYSTEM ERROR]: An unexpected error occurred: " + e.getMessage());
+                System.out.println("\n[SYSTEM ERROR]: An unexpected error occurred: " + e.getMessage());
             }
         }
     }
