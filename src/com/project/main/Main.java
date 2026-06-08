@@ -293,8 +293,8 @@ public class Main {
                                 System.out.println("\nIndividual Balances Breakdown (Asset Sources):");
                                 for (Account acc : newUser.getAccounts()) {
                                     if (acc instanceof CryptoWallet) {
-                                        System.out.printf("- Account Type: %-20s | Provider Bank: %-10s | Wallet: %-10s | Balance: %,12.2f %s%n",
-                                                acc.getAccountType(), acc.getInstitutionName(), ((CryptoWallet) acc).getWalletAddress(), acc.getBalance(), acc.getCurrency());
+                                        System.out.printf("- Account Type: %-20s | Provider Bank: %-10s | Balance: %,12.2f %s%n",
+                                                acc.getAccountType(), acc.getInstitutionName(), acc.getBalance(), acc.getCurrency());
                                     } else {
                                         System.out.printf("- Account Type: %-20s | Provider Bank: %-10s | Balance: %,12.2f %s%n",
                                                 acc.getAccountType(), acc.getInstitutionName(), acc.getBalance(), acc.getCurrency());

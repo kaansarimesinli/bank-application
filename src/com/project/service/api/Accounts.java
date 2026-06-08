@@ -7,7 +7,7 @@ public enum Accounts {
     SavingsAccount(0, "Savings Account", "USD"),
     CreditCardAccount(15000, "Credit Card Account", "USD"),
     InvestmentAccount(25000, "Investment Account", "USD"),
-    CryptoWallet(50, "Crypto Wallet", "ETH"),
+    CryptoWallet(50, "Crypto Wallet", "USD"),
     LoanAccount(-6000, "Loan Account", "USD");
 
     private final double balance;
