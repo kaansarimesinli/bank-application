@@ -17,36 +17,10 @@ public class Main {
         System.out.println("=======================================================");
         System.out.print("Please enter your username: ");
         String username = input.nextLine();
-        double incomeAmount;
-        while(true) {
-            System.out.print("Please enter your income amount: ");
-            try {
-                incomeAmount = Double.parseDouble(input.nextLine());
-                break;
-            }catch (NumberFormatException e) {
-                System.out.println("Invalid input!");
-            }
-        }
-        double recurringExpense;
-        while(true) {
-            System.out.print("Please enter your recurring expense amount: ");
-            try {
-                recurringExpense = Double.parseDouble(input.nextLine());
-                break;
-            }catch (NumberFormatException e) {
-                System.out.println("Invalid input!");
-            }
-        }
-        double outstandingDebt;
-        while(true) {
-            System.out.print("Please enter your outstanding debt amount: ");
-            try {
-                outstandingDebt = Double.parseDouble(input.nextLine());
-                break;
-            }catch (NumberFormatException e) {
-                System.out.println("Invalid input!");
-            }
-        }
+        double incomeAmount = secureBalance("Please enter your income amount: ");;
+        double recurringExpense = secureBalance("Please enter your recurring expense amount: ");
+        double outstandingDebt = secureBalance("Please enter your outstanding debt amount: ");
+
         System.out.println("\nWelcome to the Financial Management Application!\n");
 
         System.out.println("        BANK SELECTION SCREEN");
@@ -56,22 +30,7 @@ public class Main {
             System.out.printf("%d. %s%n", i + 1, banks[i].getName());
         }
         System.out.println();
-        int bankSelection;
-        while(true) {
-                try {
-                    System.out.print("Please select a bank: ");
-                    int temporarySelection = Integer.parseInt(input.nextLine());
-
-                    if(temporarySelection < 1 || temporarySelection > 4) {
-                        throw new IllegalArgumentException();
-                    }
-                    bankSelection = temporarySelection;
-                    break;
-
-                }catch (IllegalArgumentException e) {
-                    System.out.println("Invalid input!");
-                }
-        }
+        int bankSelection = secureSelection("Please select a bank: ", 1, 4);
         Banks selectedBank = banks[bankSelection - 1];
 
         User newUser = new User(username, incomeAmount, recurringExpense, outstandingDebt, selectedBank);
@@ -94,20 +53,23 @@ public class Main {
         System.out.println("1. Central Financial Management & Banking");
         System.out.println("2. Financial Academy & Gamification Hub");
         System.out.println("3. Exit System\n");
-        int panelSelection;
-        while(true) {
-            try {
-                System.out.print("Please select: ");
-                int temporarySelection = Integer.parseInt(input.nextLine());
+        int panelSelection = secureSelection("Please select: ", 1, 3);
 
-                if(temporarySelection < 1 || temporarySelection > 3) {
-                    throw new IllegalArgumentException();
-                }
-                panelSelection = temporarySelection;
-                break;
+        if (panelSelection == 1) {
+            System.out.println("============================================");
+            System.out.println("         FINANCIAL MANAGEMENT PANEL");
+            System.out.println("============================================");
+            System.out.println("1. Process Income Transaction");
+            System.out.println("2. Process Expense Transaction");
+            System.out.println("3. Savings Goal Contribution");
+            System.out.println("4. Run Financial Analysis & Reports");
+            System.out.println("5. Check Dashboard Asset Net Worth");
+            System.out.println("6. Return to Master Switchboard");
+            int op = secureSelection("Operation Choice: ", 1, 6);
 
-            }catch (IllegalArgumentException e) {
-                System.out.println("Invalid input!");
+            switch (op) {
+                case 1:
+
             }
         }
 
@@ -117,6 +79,34 @@ public class Main {
         }
 
 
+    }
+
+    public static int secureSelection(String message, int min, int max) {
+        while(true) {
+            System.out.print(message);
+            try {
+                int temporarySelection = Integer.parseInt(input.nextLine());
+
+                if(temporarySelection < min || temporarySelection > max) {
+                    throw new IllegalArgumentException();
+                }
+                return temporarySelection;
+
+            }catch (IllegalArgumentException e) {
+                System.out.println("Invalid input!");
+            }
+        }
+    }
+
+    public static double secureBalance(String message) {
+        while(true) {
+            System.out.print(message);
+            try {
+                return Double.parseDouble(input.nextLine());
+            }catch (NumberFormatException e) {
+                System.out.println("Invalid input!");
+            }
+        }
     }
 
 }
