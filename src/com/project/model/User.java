@@ -51,15 +51,11 @@ public class User {
         }
     }
 
-    public void totalBalanceCalculate() {
+    public void getBalances() {
         for(Account account : accounts) {
             System.out.println(account.getBalance());
             totalBalance += account.getBalance();
         }
-    }
-
-    public double getTotalBalance() {
-        return totalBalance;
     }
 
 }
