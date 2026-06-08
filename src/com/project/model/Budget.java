@@ -1,4 +1,4 @@
 package com.project.model;
 
-public class Budget {
+public abstract class Budget {
 }

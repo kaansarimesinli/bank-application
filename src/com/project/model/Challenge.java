@@ -1,4 +1,4 @@
 package com.project.model;
 
-public class Challenge {
+public abstract class Challenge {
 }

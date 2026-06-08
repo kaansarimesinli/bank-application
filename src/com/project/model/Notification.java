@@ -1,4 +1,4 @@
 package com.project.model;
 
-public class Notification {
+public abstract class Notification {
 }

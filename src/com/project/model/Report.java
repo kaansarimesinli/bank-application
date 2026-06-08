@@ -1,4 +1,4 @@
 package com.project.model;
 
-public class Report {
+public abstract class Report {
 }

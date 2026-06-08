@@ -1,4 +1,4 @@
 package com.project.model;
 
-public class Achievement {
+public abstract class Achievement {
 }

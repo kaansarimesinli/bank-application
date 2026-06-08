@@ -1,4 +1,4 @@
 package com.project.model;
 
-public class Goal {
+public abstract class Goal {
 }

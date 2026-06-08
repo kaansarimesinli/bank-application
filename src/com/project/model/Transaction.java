@@ -1,4 +1,4 @@
 package com.project.model;
 
-public class Transaction {
+public abstract class Transaction {
 }

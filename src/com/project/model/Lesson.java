@@ -1,4 +1,4 @@
 package com.project.model;
 
-public class Lesson {
+public abstract class Lesson {
 }
