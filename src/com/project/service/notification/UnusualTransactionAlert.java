@@ -9,6 +9,6 @@ public class UnusualTransactionAlert extends Notification {
 
     @Override
     public void sendNotification() {
-        System.out.println("🚨 [UNUSUAL TRANSACTION DETECTED] (" + getTimestamp() + ") -> " + getMessage());
+        System.out.println("[UNUSUAL TRANSACTION DETECTED] (" + getTimestamp() + ") -> " + getMessage());
     }
 }

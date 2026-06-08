@@ -9,12 +9,12 @@ public class TravelGoal extends Goal {
 
     @Override
     public void checkGoalStatus() {
-        System.out.println("🎯 Goal [" + getGoalName() + "] Progress: "
+        System.out.println("Goal [" + getGoalName() + "] Progress: "
                 + String.format("%.2f", getProgressPercentage()) + "% ("
                 + getCurrentAmount() + " / " + getTargetAmount() + " USD)");
 
         if (getCurrentAmount() >= getTargetAmount()) {
-            System.out.println("🎉 Congratulations! You saved enough for your dream trip: " + getGoalName() + "!");
+            System.out.println("Congratulations! You saved enough for your dream trip: " + getGoalName() + "!");
         }
     }
 

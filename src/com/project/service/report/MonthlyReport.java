@@ -10,7 +10,7 @@ public class MonthlyReport extends Report {
 
     @Override
     public void generateReport(User user) {
-        System.out.println("\n📊 === MONTHLY FINANCIAL REPORT ===");
+        System.out.println("\n=== MONTHLY FINANCIAL REPORT ===");
         System.out.println("Title: " + getReportTitle());
         System.out.println("Generated At: " + getGeneratedAt());
         System.out.println("User: " + user.getUsername());

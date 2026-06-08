@@ -22,12 +22,12 @@ public class EducationGoal extends Goal {
 
     @Override
     public void checkGoalStatus() {
-        System.out.println("🎓 Education Goal [" + getGoalName() + "] Progress: "
+        System.out.println("Education Goal [" + getGoalName() + "] Progress: "
                 + String.format("%.2f", getProgressPercentage()) + "% ("
                 + getCurrentAmount() + " / " + tuitionCostEstimate + " USD)");
 
         if (getCurrentAmount() >= tuitionCostEstimate) {
-            System.out.println("🎉 Financial Milestone! Your education expenses and tuition fees are fully covered!");
+            System.out.println("Financial Milestone! Your education expenses and tuition fees are fully covered!");
         }
     }
 }

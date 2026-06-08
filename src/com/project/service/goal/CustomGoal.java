@@ -13,7 +13,7 @@ public class CustomGoal extends Goal {
     }
     @Override
     public void checkGoalStatus() {
-        System.out.println("🎯 Custom Goal [" + getGoalName() + "] Progress: "
+        System.out.println("Custom Goal [" + getGoalName() + "] Progress: "
                 + String.format("%.2f", getProgressPercentage()) + "% ("
                 + getCurrentAmount() + " / " + getTargetAmount() + " USD)");
         System.out.println("Notes: " + goalNotes);

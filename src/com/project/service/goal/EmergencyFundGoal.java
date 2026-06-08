@@ -12,13 +12,13 @@ public class EmergencyFundGoal extends Goal {
 
     @Override
     public void checkGoalStatus() {
-        System.out.println("🛡️ Emergency Fund [" + getGoalName() + "] Progress: "
+        System.out.println("Emergency Fund [" + getGoalName() + "] Progress: "
                 + String.format("%.2f", getProgressPercentage()) + "% ("
                 + getCurrentAmount() + " / " + getTargetAmount() + " USD)");
         System.out.println("Target covers roughly " + monthsOfCover + " months of basic living expenses.");
 
         if (getCurrentAmount() >= getTargetAmount()) {
-            System.out.println("🎉 Amazing! You have built a secure financial safety net!");
+            System.out.println("Amazing! You have built a secure financial safety net!");
         }
     }
 }

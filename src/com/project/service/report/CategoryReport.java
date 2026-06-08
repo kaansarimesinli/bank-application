@@ -11,7 +11,7 @@ public class CategoryReport extends Report {
 
     @Override
     public void generateReport(User user) {
-        System.out.println("\n🍕 === CATEGORICAL SPENDING REPORT ===");
+        System.out.println("\n=== CATEGORICAL SPENDING REPORT ===");
         System.out.println("Title: " + getReportTitle());
         System.out.println("Budget Breakdown:");
         if (user.getBudgets().isEmpty()) {

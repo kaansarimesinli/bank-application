@@ -10,7 +10,7 @@ public class AnnualReport extends Report {
 
     @Override
     public void generateReport(User user) {
-        System.out.println("\n📈 === ANNUAL PERFORMANCE REPORT ===");
+        System.out.println("\n=== ANNUAL PERFORMANCE REPORT ===");
         System.out.println("Title: " + getReportTitle());
         System.out.println("Generated At: " + getGeneratedAt());
         System.out.println("Current Tier: " + user.getCurrentTier());

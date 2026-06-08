@@ -13,7 +13,7 @@ public class InvestmentSeedGoal extends Goal {
                 + getCurrentAmount() + " / " + getTargetAmount() + " USD)");
 
         if (getCurrentAmount() >= getTargetAmount()) {
-            System.out.println("🚀 Seed capital secured! You are ready to move this money into your Investment Account!");
+            System.out.println("Seed capital secured! You are ready to move this money into your Investment Account!");
         }
     }
 }

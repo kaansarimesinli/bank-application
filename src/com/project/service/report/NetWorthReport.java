@@ -10,7 +10,7 @@ public class NetWorthReport extends Report {
 
     @Override
     public void generateReport(User user) {
-        System.out.println("\n💰 === NET WORTH REPORT ===");
+        System.out.println("\n=== NET WORTH REPORT ===");
         System.out.println("Title: " + getReportTitle());
         System.out.println("Primary Bank: " + user.getBank().getName());
         System.out.print("Account Balances: ");

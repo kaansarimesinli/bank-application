@@ -9,7 +9,7 @@ public class InvestingLesson extends Lesson {
 
     @Override
     public void studyLesson() {
-        System.out.println("\n📈 [LESSON: INVESTING FUNDAMENTALS]");
+        System.out.println("\n[LESSON: INVESTING FUNDAMENTALS]");
         System.out.println("Title: " + getLessonTitle());
         System.out.println("Content: Understand compound interest, diversification, and investment asset types like stocks and bonds.");
         completeLesson();

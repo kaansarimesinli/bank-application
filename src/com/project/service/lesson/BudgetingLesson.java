@@ -9,7 +9,7 @@ public class BudgetingLesson extends Lesson {
 
     @Override
     public void studyLesson() {
-        System.out.println("\n📖 [LESSON: BUDGETING MANAGEMENT]");
+        System.out.println("\n[LESSON: BUDGETING MANAGEMENT]");
         System.out.println("Title: " + getLessonTitle());
         System.out.println("Content: Learn the 50/30/20 rule. Allocate 50% to needs, 30% to wants, and 20% to savings.");
         completeLesson();

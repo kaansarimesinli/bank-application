@@ -9,7 +9,7 @@ public class TaxLesson extends Lesson {
 
     @Override
     public void studyLesson() {
-        System.out.println("\n📝 [LESSON: TAX AND DEDUCTION AWARENESS]");
+        System.out.println("\n[LESSON: TAX AND DEDUCTION AWARENESS]");
         System.out.println("Title: " + getLessonTitle());
         System.out.println("Content: Grasp the basics of income taxes, deductibles, and financial write-offs to optimize net income.");
         completeLesson();

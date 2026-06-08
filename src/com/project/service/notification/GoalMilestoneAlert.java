@@ -9,6 +9,6 @@ public class GoalMilestoneAlert extends Notification {
 
     @Override
     public void sendNotification() {
-        System.out.println("🎯 [GOAL MILESTONE] (" + getTimestamp() + ") -> " + getMessage());
+        System.out.println("[GOAL MILESTONE] (" + getTimestamp() + ") -> " + getMessage());
     }
 }
